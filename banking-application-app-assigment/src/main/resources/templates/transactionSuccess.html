@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Successful</title>
+</head>
+ 
+<body>
+ 
+<h2 th:text="${message}">Transaction Successful</h2>
+ 
+<p>
+    Updated balance:
+    <strong>
+        <span th:text="${balance}">0</span>
+    </strong>
+</p>
+ 
+<hr/>
+ 
+<nav>
+    <a th:href="@{/atm/deposit}">Make another deposit</a>
+    &nbsp;|&nbsp;
+    <a th:href="@{/atm/withdraw}">Make another withdrawal</a>
+    &nbsp;|&nbsp;
+    <a th:href="@{/atm/create}">Create Account</a>
+</nav>
+ 
+</body>
+</html>

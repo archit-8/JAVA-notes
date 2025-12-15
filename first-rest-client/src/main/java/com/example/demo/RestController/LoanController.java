@@ -31,8 +31,8 @@ public class LoanController {
 	}
 
 	@GetMapping("/all")
-	public List<Loan> getLoans() {
-		return null;
+	public String getLoans() {
+		return  "hellowrold" ;
 	}
 
 	@PutMapping("/modify")

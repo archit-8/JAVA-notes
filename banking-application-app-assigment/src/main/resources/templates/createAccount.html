@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+</head>
+<body>
+
+<h1>Create Bank Account</h1>
+
+<form th:action="@{/atm/create}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required />
+
+    <br><br>
+    <button type="submit">Create Account</button>
+</form>
+
+<hr/>
+
+<nav>
+    <a th:href="@{/atm/deposit}">Deposit Page</a> |
+    <a th:href="@{/atm/withdraw}">Withdraw Page</a>
+</nav>
+
+</body>
+</html>
