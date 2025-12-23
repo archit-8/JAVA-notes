@@ -1,0 +1,491 @@
+======================DAY 16======================
+==================Spring framework================
+Spring framework?
+dependency management ----SOLID--->
+The keyword new is nuisance
+java  works on pulling  dependencies--pull method
+spring works on push method----dependencies-->Injection
+spring does not write code
+it is based on Inversion of control pattern of which dependency injection is on part
+Framework -- we have lot of readymade class to startup  quickly.
+has a very good support for testing like mock testing ,smoke ,spy
+�a framework developed only for java language.
+Every  thing  in a java  EE is a component -contains-to run and to test
+�give me POJO-->I will make it a component - to test this you don't need container.
+
+�
+Eliminators{}
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+�      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+�      xsi:schemaLocation="http://www.springframework.org/schema/beans
+�          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+�   <!-- Bean A -->
+�   <bean id="a" class="com.tcs.core.A"/>
+
+�   <!-- Bean A1 -->
+�   <bean id="a1" class="com.tcs.core.A1"/>
+
+�   <!-- Bean B depends on A1 -->
+�   <bean id="b" class="com.tcs.core.B">
+�       <constructor-arg ref="a1"/>
+�   </bean>
+
+</() {
+�       System.out.println("Inside A1");
+�   }
+}
+
+============================================================Day17===================================
+
+1.autowiring----->{	ByType---there is only  one bean definition in the config file,
+�                  	ByName ---> when  we want  to match  any bean with a similar name
+�		  	<bean name="util" autowire="ByName"> Rectangle rect;
+�		   	setMethod for injection},
+�                  	Constructor
+�                 }
+2.bean scopes{ default scope is singleton ,prototype ,{request, session, application, WebSocket}}, and life cycle method.
+change to prototype when we need new object created  every time.
+
+life cycle methods-call back methods--for components
+Object vs Component? a component is design with some  specification ,every component is also an object first, plus  will have pre-defined methods and life cycle method(call back method) {servlet init(),destroy() and service()}
+working with annotation configuration {}
+spring JDBC and datasource+JDBCTemplate
+
+codeshare.io/5PKXjP
+
+
+4.SpringJdbc and datasoruce+Jdbc Template
+@Confinguration @Bean instatations
+
+Component
+Service
+Repository
+auto wired
+configuration
+Components  scan
+primary
+qualifier
+Bean
+Post Construct
+pre destroy
+@table
+Column
+ud
+entity
+Request Mapping
+Controller
+SpringBoootApplication{ ComponentScan---->(searching all our package, class and interface) ,Enable Auto Configuration, spring boot Configuration}
+GenerateValue
+Put Mapping
+Deleting mapping
+patching mapping
+ExcpetionHandler
+RestControllerAdvice
+ResponseStatus
+requestBody
+pathvariable
+modelAttribute
+requestparm
+Onetomany
+manytomany
+onetoone
+jointabel
+joinColumn
+query
+jhsonignore
+vaild
+ColumnName
+Pointcut
+WebSecuirty
+EnableMethodSecuirty
+Before
+After
+
+
+
+
+=============================================================java 18==================================
+
+Servlet JSP {} A servlet is a small server side java program, which  programmatically extends the functionality of  a server.
+
+old-->Every request--- a new process
+servlets--every request---->{ a new thread  per request } in the single process
+
+Browser/client/ proxy--->request-->HTTP headers---> Web Servers--->
+�                                  rendered in browser<--- HTTP header<--- send the response closes the connection
+�                                  HTTP->protocol-Request-Response
+�                                        TCP/IP-----synchronous
+�				         UDP-------->>>asynchronous
+
+
+W3c.org
+
+? how data comes to your Controllers--
+Spring Boot---Intro? Spring-Java config-- Autoconfig
+SpringBoot =Spring-configuration+(staters+
+1.query parameters
+2.headers
+3.form POST method
+///www=String
+===========================================================java 19====================================
+
+--------------JSP----------------------------
+<@ %> directives
+<% %> <%=%> ,<!%  %> scripting elements
+<jsp:forward ,jsp:includejsp:bean action tags
+
+========================MVC======
+======================================================Day 20===========================>
+Nov 28th:
+�
+snap run postman
+�
+1.Resume RESTful
+HTTP {GET,PUT,DELETE} {POST} NOT idempotent{1*1} 1
+�
++ H2 in memory db
+�
+200 OK  Success (GET, PUT, PATCH)
+201 Created  New resource created (POST)
+204 No Content  Successfully deleted (DELETE)
+400 Bad Request  Validation failed or malformed request
+401 Unauthorized  Authentication required
+403 Forbidden  Authenticated but not authorized
+404 Not Found  Rhttps://codeshare.io/esource not found
+409 Conflict  Resource conflict (e.g., duplicate email)
+422 Unprocessable Entity  Valid request but cannot be processed
+500 Internal Server Error  Something went wrong on the server
+�
+Common ResponseEntity Methods
+Method Description
+ResponseEntity.ok() Return 200 OK
+ResponseEntity.status() Set custom status
+ResponseEntity.noContent() Return 204 No Content
+ResponseEntity.badRequest() Return 400 Bad Request
+ResponseEntity.notFound() Return 404 Not Found
+ResponseEntity.internalServerError() Return 500 Internal Server Error
+ResponseEntity.accepted() Return 202 Accepted
+�
+�
+�    -----------------------
+�
+�
+2.REST Exceptional Handling:
+�
+i) @ExceptionHandler - to handle an exception locally
+ii) @RestControllerAdvice - to handle global exceptions , the handlers will be annotated with  @ExceptionHandler
+�                           this annotation is an extension of @ControllerAdvice
+�
+3.REST Client:
+�
+i) RestClient
+ii) WebClient                                                        java.net
+iii) RestTemplate  //used commonly
+iv) HTTP Service Clients
+�
+�
+�
+�
+�
+�
+�
+4.Java 8 streams final
+�
+�====================================================day 21====================================================
+@vaild---for handling validation errors
+
+handling validation erros globally.
+profiles
+commands to run  from console
+writing own method in repository-------persistence context
+@Query--->
+entity mapping
+spring batch
+
+mapping-->only one entity ("the "one " side knows
+
+
+
+Key Concepts
+
+Unidirectional Mapping: Only one entity (the "one" side) knows about the relationship.
+Bidirectional Mapping: Both entities (the "one" and "many" sides) are aware of the relationship.
+
+Use @OneToMany in the parent entity to define the relationship.
+Use @ManyToOne in the child entity to establish the link back to the parent.
+The mappedBy attribute in @OneToMany indicates the field in the child entity that owns the relationship.
+
+CascadeType.ALL ensures that child entities are persisted or deleted along with the parent.
+mappedBy avoids creating an additional join table by specifying the owning side of the relationship.
+Use @JoinColumn to customize the foreign key column name in the child table.
+
+
+A one-to-many relationship between two entities
+is defined using the @OneToMany annotation in
+Spring Data JPA. It declares the mappedBy
+element to indicate the entity that owns the
+bidirectional relationship.
+Usually, the child entity owns the relationship,
+and the parent entity contains the @OneToMany
+annotation.
+
+---
+Bidirectional mapping with @12M and @M21
+@12M would be placed on a collection association of an entity (or the One side) with the
+mapped by attribute pointing to the relationship owner
+@Entity
+public class Book{
+@OneToMany(mappedBy="book", cascade=CascadeType.ALL)
+private Set<Page> pages = new HashSet<>();
+}
+@Entity
+public class Page{
+@ManyToOne(fetch=FetchType.LAZY, optional=false)
+@JoinColumn(name="book_id")
+private Book book;
+
+}
+@ManyToOne would be placed on the single item association of an entity
+�(or the relationship owner; the table with a foreign key column in the underlying database)
+@JoinColumn specifies the foreign key column.
+It is optional for bi-drectional mapping,
+default name to the underscore string join of the association field name and its
+primary key column name
+�
+�On the opposite, the mappedBy attribute on @OneToMany is required to
+� specify for bi-drectional mapping. If mappedBy is absent,  JPA and Hibernate
+� will create a redundant join table book_pages
+�+------------+---------+------+-----+---------+-------+
+| Field      | Type    | Null | Key | Default | Extra |
++------------+---------+------+-----+---------+-------+
+| book_id | int(11) | NO   | PRI | NULL    |       |
+| pages_id   | int(11) | NO   | PRI | NULL    |       |
++------------+---------+------+-----+---------+-------+
+
+�Both entities of the relationship can quickly access and cascade CRUD operations to
+�each other
+�
+�Unidirecrional mapping with @ManyToOne
+�This annotation would be placed on a single item association of an
+�entity (on on the table with a foreign key column in the underlying database).
+�There is no child collection association mapping on the parent entity
+�
+
+
+------------------------------------------------DAY22-----------
+create  jar first ,during that process skip tests
+�mvn package - dmaven.test.skip=true
+�mvn spring-boot:run -Dspring-boot.run.profiles=prod
+java -Dpsring
+
+for activing multiple profile mvn spring-boot:run -Dspring-boot.run.profiles=dev,prod
+Profile
+spring batch----ETL,CSV,KAFKA streams--IBM, LEGACY, xml
+spring AOP
+Actuators
+
+AOP(aspect Oriented programming)
+�type of advice---
+�                 \|/
+�          before --- before method execution. can't prevent execution of join point.
+�          after running-- after join point execution .
+when code executed normally.
+�          after throwing---> after joint point execution .
+when code exits by throwing an exception.
+�          after(finally)--> after  join point execution .
+�				every time(like finally block)
+�          around--> run before and after.
+�			decide whether proceed to join point or to return some data or to throw an exception.
+
+
+----------------------------------------day23---------------------------------------------------------
+spring AOP
+actuators
+Springboot security(3.x and 6.x)
+databasesecuirty
+JWT
+=========================================Day 24======================================================
+for API design--->https://www.youtube.com/watch?v=DQ57zYedMdQ - api design
+don't configure
+jdbcauthentiation for jdbc
+
+============DAY25=====================
+Swagger
+different properties file
+=====================day 26============
+mircroservices---->
+cloud gateway--> Spring Cloud Gateway aims to provide a simple, yet effective way to route to APIs and provide cross-cutting concerns to them such as: security, monitoring/metrics, and resiliency.
+monitoring----------->
+resiliency---->
+gateway--http://localhost:8761
+gateway--http://localhost:8093
+http://localhost:8888/config-client/default
+==========day 27========================
+@SpringBootApplication class runs
+Combines:
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
+
+
+SpringApplication.run()
+Bootstraps the application.
+Creates the ApplicationContext.
+
+Component Scan
+Scans packages for:
+@Component
+@Service
+@Repository
+@Controller
+@RestController
+
+
+Bean Creation & Dependency Injection
+Beans annotated with @Component, @Service, @Repository are instantiated.
+@Autowired injects dependencies.
+If multiple beans exist:
+@Primary or @Qualifier decides which bean to inject.
+
+Configuration Classes
+@Configuration classes processed.
+@Bean methods executed to create custom beans.
+
+Lifecycle Hooks
+@PostConstruct methods run (after bean initialization).
+@PreDestroy registered for shutdown.
+
+Enable Auto Configuration
+Spring Boot loads auto-configurations based on classpath (e.g., DataSource, JPA, WebMVC).
+
+Entity & JPA Setup
+@Entity, @Table, @Column, @Id, @GeneratedValue processed.
+Hibernate SessionFactory initialized.
+Controller & Request Mapping
+@Controller / @RestController beans registered.
+@RequestMapping, @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PatchMapping mapped to URLs.
+Exception Handling
+@ControllerAdvice / @RestControllerAdvice and @ExceptionHandler registered.
+Security
+@EnableWebSecurity, @EnableMethodSecurity processed.
+AOP aspects like @Pointcut, @Before, @After applied.
+mircroservice
+materialized view
+git
+creating a new commit
+git diff
+git diff
+git diff cached
+git diff head
+git show comid:file
+git log -p file/directory
+git checkout <filename> (to remove  changes made to a file)-remove the changes from the file before stagging.
+git commit -m 'new commit message' amed (insert of creating a new commit .opens  the previous and allow modify the cmmit msg-editing
+git rm -cached -r remove all the fils
+to remove a file from staggin error
+git reset filename
+git checkout filename to remove changes from the file
+git branch feature
+git checkout feature
+
+// GitHub Repo Link https://github.com/archit-8/trainee
+
+===========================================Day 28=======================================================================
+Maven--------conepts--Scops{compile,runtime,test}
+Docker
+Jenkins
+Docker---virtaliztion-->host on os on another os
+define  a dockerfile{os,welc
+
+https://github.com/archit-8/first-rest.git
+https://thedeveloperstory.com/2021/08/02/5-superb-github-repos-that-every-java-developer-must-know-about/---
+=======================================================Day29===============================================
+docker commnd
+docker version
+docker images
+docker ps
+docker ps -a or -all list all containers wide
+docker pull nginx:123
+docker run nginx:123 block terminal
+docker -d  or detach nginx :1.23
+docker Logs >Containerid>
+docker stop<contained>
+
+COPY package.json/app/
+COPY src/app/
+WORKDIR/app
+RUN npm intall
+CMD["node","server.js"]
+
+docker run --rm -p 9999:9999
+--security-opt seccomp=unconfined
+springboot-docker-app
+======================================================
+1. Download Minikube binary
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
+Downloads the latest Minikube binary for Linux.
+2. Install Minikube
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+Installs Minikube so you can run it globally.
+3. Start Minikube cluster (MISSING STEP)
+minikube start --driver=docker
+Starts a local Kubernetes cluster using Docker as the container runtime.
+4. Apply Service manifest
+kubectl apply -f nginx-service.yaml
+Creates the Kubernetes Service to expose your Nginx pods.
+5. Apply Deployment manifest
+kubectl apply -f nginx-deployment.yaml
+Creates the Deployment that runs Nginx pods.
+6. Check running pods
+kubectl get pods
+Lists all pods and their status in the current namespace.
+7. Check services
+kubectl get svc
+Lists all services and their cluster IPs/ports.
+8. Access service via Minikube helper
+minikube service nginx
+Opens the Nginx service in your browser or shows its URL.
+9. Port-forward service to local port
+kubectl port-forward svc/nginx 9999:80
+
+====================
+junit and mocking testing
+testing
+plan
+dev/test
+bug
+test coverage--ratio of code to test  cases-80  80-20 rule
+====================================================================================================
+LOGGING
+logging  levels helps in categorizing log statements based on their severity. The  common logging levels are
+TRACE
+DEBUG
+INFO
+WARN
+ERROR
+
+
+eres how the controller methods correspond to the Thymeleaf views:
+
+/atm/create: Displays the account creation form. Mapped to createAccount.html.
+
+/atm/login: Displays the login form. Mapped to login.html.
+
+/atm/deposit: Displays the deposit form. Mapped to deposit.html.
+
+/atm/withdraw: Displays the withdrawal form. Mapped to withdraw.html.
+
+/atm/transfer: Displays the transfer form. Mapped to transfer.html.
+
+/atm/accountCreated: Displays the account created success page with quick deposit and withdraw options. Mapped to accountCreated.html.
+
+/atm/transactionSuccess: Displays the transaction success page showing the updated balance. Mapped to transactionSuccess.html.
+
+� That's it! You've got a full working project with Thymeleaf templates mapped to your controllers. 
